@@ -1,0 +1,21 @@
+﻿.body-content-item {
+    width: 95%;
+    height: auto;
+    margin: 10px auto auto auto;
+}
+.body-content-item a{
+    color: white;
+}
+.body-content-item table {
+    width: 80%;
+    margin: auto;
+}
+.question-item-btn {
+    text-align: center;
+    width: 20%;
+}
+.body-content-item-item {
+    width: 70%;
+    margin: auto;
+    height: auto;
+}

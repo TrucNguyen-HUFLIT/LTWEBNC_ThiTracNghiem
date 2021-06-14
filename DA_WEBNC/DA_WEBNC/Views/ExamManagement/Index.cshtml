@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DA_WEBNC.Models.BaiThi>
+@{
+    ViewBag.Title = "ExamManager";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+<link href="~/Content/style1.css" rel="stylesheet" />
+<style>
+    .item-exam {
+        padding: 10px 10px 10px 10px;
+        height: 100%;
+        display: flex;
+        margin: 0 15% 0 15%;
+    }
+</style>
+<div class="body-content">
+    <div class="container mt-3">
+        <h2>Quản lý bài thi</h2>
+        <br />
+        <div class="content-header">
+            <a href="@Url.Action("Index", "ExamManagement")"><button class="btn btn-primary">Danh sách bài thi</button></a>
+            <a href="@Url.Action("Create", "ExamManagement")"><button class="btn btn-default">Thêm bài thi</button></a>
+        </div>
+        <hr />
+        <div class="body-main">
+            @foreach (var item in Model)
+            {
+                <div class="item-exam">
+                    <div class="img-item-exam"><img src="~/Content/Images/icon_ask.jpg" alt="Alternate Text" /></div>
+                    <div class="content-item-exam">
+                        <span>Đề</span><p>@Html.DisplayFor(modelItem => item.TenBaiThi)</p>
+                    </div>
+                    <div class="content-item-exam">
+                        <span>Thời gian </span><p>@Html.DisplayFor(modelItem => item.ThoiGianLamBai)</p>
+                    </div>
+                    <div class="btn-item-exam">
+                        <a href="@Url.Action("Details", "ExamManagement")"><input class="btn btn-link" type="submit" value="Xem chi tiết >>"/></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

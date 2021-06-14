@@ -1,0 +1,77 @@
+﻿@model IEnumerable<DA_WEBNC.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div style="margin:20px">
+        @Html.ActionLink("Tạo tài khoản", "Create", "", new { @class = "btn btn-info" })
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            Danh sách Nhân viên
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" style="font-size:17px" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID Nhân viên
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                Tên
+                            </th>
+                            <th>
+                                Địa chỉ
+                            </th>
+                            <th>
+                                Vị trí
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.IDRole == 1)
+                            {
+                                continue;
+                            }
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IDNhanVien)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+
+                                <td>
+                                    Nhân viên
+                                </td>
+                                <td class="text-center">
+                                    @Html.ActionLink("Edit", "Edit", new {  id=item.IDNhanVien }, new {@class = "btn btn-warning" }) 
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.IDNhanVien }, new { @class = "btn btn-success" } ) |*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
