@@ -1,0 +1,166 @@
+﻿.body-content {
+    background-color: white;
+    width: 95%;
+    height: auto;
+    margin: 6% auto auto auto;
+}
+
+    .body-content h2 {
+        text-align: center;
+        padding-top: 20px;
+        font-family: 'Comic Sans MS';
+    }
+
+.header-item {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+    .header-item button {
+        margin: auto 0 auto 10%;
+    }
+
+.header-search {
+    display: flex;
+    justify-content: center;
+    margin: auto auto auto 45%;
+}
+
+    .header-search button {
+        margin-left: 5px;
+    }
+
+.main-item {
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border: 1px solid black;
+    display: flex;
+}
+
+    .main-item:hover {
+        background-color: #eeeeee;
+    }
+
+.question-item {
+    width: 80%;
+    height: auto;
+    margin: 5px 5px 5px 15px;
+    float: left;
+}
+
+    .question-item h4 {
+        padding-left: 10px;
+    }
+
+    .question-item h5 {
+        padding-left: 20px;
+    }
+
+.question-btn {
+    float: right;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.add-question {
+    width: 80%;
+    height: 410px;
+    display: none;
+    margin: 10px auto 0 auto;
+    border: 1px solid black;
+}
+
+.add-question-main {
+    width: 95%;
+    height: 95%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-question-item {
+    height: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.add-item {
+    margin-top: 10px;
+}
+
+    .add-item span {
+        font-size: 130%;
+    }
+
+    .add-item input {
+        height: 40px;
+        width: 80%;
+        border-style: none;
+        font-size: 140%;
+    }
+
+    .add-item p {
+        font-size: 130%;
+    }
+
+.item-item-answer {
+    height: 38px;
+    width: 90%;
+    margin-left: 20px;
+}
+
+    .item-item-answer span {
+        font-size: 110%;
+    }
+
+    .item-item-answer input {
+        height: 35px;
+        width: 90%;
+        font-size: 110%;
+    }
+
+.add-item select {
+    width: 50px;
+    height: 30px;
+}
+
+.submid-item {
+    margin-top: 30px;
+}
+
+.btn-submit {
+    float: left;
+    margin-left: 370px;
+}
+
+.btn-cancel {
+    float: right;
+    margin-right: 370px;
+}
+
+.item-item-idcauhoi input {
+    width: 300px;
+    height: 40px;
+    font-size: 130%;
+}
+
+.content-header button{
+    width: 200px;
+}
+
+.add-exam{
+    height: 100%;
+    width: 90%;
+    margin: auto;
+}
+.add-item-exam{
+    height: 600px;
+    width: 600px;
+    margin: auto;
+    background-color: red;
+}
