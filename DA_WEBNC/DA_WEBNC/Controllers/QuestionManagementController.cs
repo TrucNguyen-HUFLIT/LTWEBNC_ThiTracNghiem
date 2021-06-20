@@ -54,7 +54,7 @@ namespace DA_WEBNC.Controllers
         {
             var model = new CauHoiViewModel
             {
-                cauHoi = new CauHoi { IDCauHoi = GetIDHD() },
+                cauHoi = new CauHoi { IDCauHoi = GetIDCH() },
                 listCauHoi = db.CauHois.ToArray()
             };
             CauHoi cauHoi = new CauHoi();
@@ -108,15 +108,34 @@ namespace DA_WEBNC.Controllers
             return View(cauHoi);
         }
 
-        public string GetIDHD()
+        public string GetIDCH()
         {
+            //var list = db.CauHois.ToArray();
+
+            //int.TryParse(list[list.Length - 1].IDCauHoi.Substring(2), out int lastID);
+
+            //string ID = "CH" + ++lastID;
+
+            //return ID;
+
             var list = db.CauHois.ToArray();
+            int[] listID = new int[list.Length];
 
-            int.TryParse(list[list.Length - 1].IDCauHoi.Substring(2), out int lastID);
-
+            for (int i = 0; i < list.Length; i++)
+            {
+                int.TryParse(list[i].IDCauHoi.Substring(2), out listID[i]);
+            }
+            int lastID = 0;
+            for (int i = 0; i < listID.Length; i++)
+            {
+                if (listID[i] > lastID)
+                {
+                    lastID = listID[i];
+                }
+            }
             string ID = "CH" + ++lastID;
-
             return ID;
+
         }
         protected override void Dispose(bool disposing)
         {

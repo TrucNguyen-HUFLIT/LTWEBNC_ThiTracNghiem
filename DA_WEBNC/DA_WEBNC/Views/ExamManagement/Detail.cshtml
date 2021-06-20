@@ -1,0 +1,27 @@
+﻿@model IEnumerable<DA_WEBNC.Models.BaiThiViewModel>
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>BaiThi</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <div class="item-exam">
+            <div class="content-item-exam">
+                <span>Câu hỏi</span><p>@Html.DisplayFor(modelItem => item.CTBT.IDCauHoi)</p>
+            </div>
+            <div class="content-item-exam">
+                <span>Câu hỏi</span><p>@Html.DisplayFor(modelItem => item.CTBT.CauHoi)</p>
+            </div>
+        </div>
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

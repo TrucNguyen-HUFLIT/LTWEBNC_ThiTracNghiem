@@ -95,6 +95,5 @@ namespace DA_WEBNC.Controllers
             //nếu bạn muốn các chữ cái in thường thay vì in hoa thì bạn thay chữ "X" in hoa trong "X2" thành "x"
             return sb.ToString();
         }
-
     }
 }
