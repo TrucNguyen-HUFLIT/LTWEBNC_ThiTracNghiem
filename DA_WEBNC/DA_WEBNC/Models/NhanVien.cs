@@ -13,6 +13,7 @@ namespace DA_WEBNC.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Threading.Tasks;
     using System.Web;
 
     public partial class NhanVien
@@ -39,6 +40,14 @@ namespace DA_WEBNC.Models
         [NotMapped]
         public HttpPostedFileBase UploadAvt { get; set; }
 
+        internal static Task ChangePasswordAsync(object p, object oldPassword, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
 
+        [Display(Name = "Mật khẩu mới")]
+        public string NewPassword { get; set; }
+        [Display(Name = "Xác nhận mật khẩu mới")]
+        public string ConfirmNewPassword { get; set; }
     }
 }

@@ -85,6 +85,65 @@ namespace DA_WEBNC.Controllers
             string ID = "HS" + list.Length;
             return ID;
         }
+
+
+        //[HttpGet]
+        //public ActionResult Reset()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public async Task<ActionResult> Reset(ResetPasswordModel resetModel)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        var model = _database.HocSinhs.Where(x => x.Email == resetModel.Email).FirstOrDefault();
+        //        if (model == null)
+        //        {
+        //            ViewBag.error = "Email không tồn tại trong hệ thống!";
+        //            return View(resetModel);
+        //        }
+
+        //        //model.pass đã được set new password
+        //        model.Password = GetPasswordRandom();
+                
+        //        await _database.SaveChangesAsync();
+
+        //        #region Send mail
+        //        MimeMessage message = new MimeMessage();
+
+        //        MailboxAddress from = new MailboxAddress("H2T Moto", "h2t.moto.huflit@gmail.com");
+        //        message.From.Add(from);
+
+        //        MailboxAddress to = new(model.TenKh, model.Email);
+        //        message.To.Add(to);
+
+        //        message.Subject = "Reset Mật khẩu thành công";
+        //        BodyBuilder bodyBuilder = new()
+        //        {
+        //            HtmlBody = $"<h1>Mật khẩu của bạn đã được reset, mật khẩu mới: {model.Pass}  </h1>",
+        //            TextBody = "Mật Khẩu của bạn đã được thay đổi "
+        //        };
+        //        message.Body = bodyBuilder.ToMessageBody();
+        //        // xac thuc email
+        //        SmtpClient client = new();
+        //        //connect (smtp address, port , true)
+        //        await client.ConnectAsync("smtp.gmail.com", 465, true);
+        //        await client.AuthenticateAsync("h2t.moto.huflit@gmail.com", "H2tmotohuflit");
+        //        //send email
+        //        await client.SendAsync(message);
+        //        await client.DisconnectAsync(true);
+        //        client.Dispose();
+        //        #endregion
+        //        ViewBag.success = "Hãy kiểm tra email của bạn để lấy mật khẩu mới!";
+
+        //        return View("Login");
+        //    }
+        //    return View(resetModel);
+        //}
+
         public string HashPassword(string password)
         {
             //Tạo MD5 
@@ -101,6 +160,16 @@ namespace DA_WEBNC.Controllers
             }
             //nếu bạn muốn các chữ cái in thường thay vì in hoa thì bạn thay chữ "X" in hoa trong "X2" thành "x"
             return sb.ToString();
+        }
+        public string GetPasswordRandom()
+        {
+            Random rnd = new Random();
+            string value = "";
+            for (int i = 0; i < 6; i++)
+            {
+                value += rnd.Next(0, 9).ToString();
+            }
+            return value;
         }
     }
 }

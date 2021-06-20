@@ -7,7 +7,7 @@ namespace DA_WEBNC.Models
 {
     public class BaiThiViewModel
     {
-        public IEnumerable<CauHoi> ListCauHoi { get; set; }
-        //public C CTBT { get; set; }
+        public BaiThi BaiThi { get; set; }
+        public CTBT CTBT { get; set; }
     }
 }

@@ -33,7 +33,7 @@
                         <span>Thời gian </span><p>@Html.DisplayFor(modelItem => item.ThoiGianLamBai)</p>
                     </div>
                     <div class="btn-item-exam">
-                        <a href="@Url.Action("Details", "ExamManagement")"><input class="btn btn-link" type="submit" value="Xem chi tiết >>"/></a>
+                        <a href="@Url.Action("Detail", "ExamManagement", new { id = item.IDBaiThi })"><input class="btn btn-link" type="submit" value="Xem chi tiết >>"/></a>
                     </div>
                 </div>
             }
