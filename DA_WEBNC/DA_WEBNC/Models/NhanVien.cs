@@ -21,17 +21,17 @@ namespace DA_WEBNC.Models
         [Display(Name = "ID Nhân viên")]
         public string IDNhanVien { get; set; }
         [Display(Name = "Email")]
-        [Required]
+        [Required(ErrorMessage ="{0} không được bỏ trống")]
         public string Email { get; set; }
         [Display(Name = "Mật khẩu")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Password { get; set; }
         [Display(Name = "Tên nhân viên")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Name { get; set; }
         public string Avatar { get; set; }
         [Display(Name = "Địa chỉ")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Address { get; set; }
         [Display(Name = "ID Role")]
         public Nullable<int> IDRole { get; set; }

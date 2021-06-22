@@ -27,10 +27,10 @@ namespace DA_WEBNC.Models
         public string IDStudent { get; set; }
         public string Email { get; set; }
         [Display(Name = "Mật khẩu")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Password { get; set; }
         [Display(Name = "Tên nhân viên")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Name { get; set; }
         public string Avatar { get; set; }
         [Display(Name = "ID Role")]

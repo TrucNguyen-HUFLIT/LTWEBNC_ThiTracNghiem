@@ -82,8 +82,23 @@ namespace DA_WEBNC.Controllers
         public string GetIDHocSinh()
         {
             var list = _database.HocSinhs.ToArray();
-            string ID = "HS" + list.Length;
+            int[] listID = new int[list.Length];
+
+            for (int i = 0; i < list.Length; i++)
+            {
+                int.TryParse(list[i].IDStudent.Substring(2), out listID[i]);
+            }
+            int lastID = 0;
+            for (int i = 0; i < listID.Length; i++)
+            {
+                if (listID[i] > lastID)
+                {
+                    lastID = listID[i];
+                }
+            }
+            string ID = "HS" + ++lastID;
             return ID;
+          
         }
 
 

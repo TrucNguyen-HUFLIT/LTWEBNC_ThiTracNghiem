@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DA_WEBNC.Models.CauHoi>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách câu hỏi";
     Layout = "~/Views/Shared/_ManagerLayout.cshtml";
 }
 <link href="~/Content/style1.css" rel="stylesheet" />
@@ -10,27 +10,35 @@
 <div class="body-content">
     <h2>Danh sách câu hỏi</h2>
     <div class="body-content-item">
-        <button type="button" class="btn btn-primary">@Html.ActionLink("Thêm câu hỏi", "Create")</button>
+        @if (@ViewBag.Added != null)
+        {
+            <a href="@Url.Action("Index")" class="btn btn-primary">Danh sách câu hỏi</a>
+        }
+        else
+        {
+            <a href="@Url.Action("Create")" class="btn btn-primary">Thêm câu hỏi</a>
+        }
+
         <hr />
         <table class="table">
             <tr>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.CauHoi1)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.A)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.B)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.C)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.D)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DapAn.DapAn1)
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.DapAn)
                 </th>
                 <th></th>
             </tr>
@@ -41,23 +49,22 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CauHoi1)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.A)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.B)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.C)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.D)
                     </td>
-                    <td>
-                        <b>@Html.DisplayFor(modelItem => item.DapAn.DapAn1)</b>
+                    <td class="text-center">
+                        <b>@Html.DisplayFor(modelItem => item.DapAn)</b>
                     </td>
                     <td class="question-item-btn">
-                        <button type="button" class="btn btn-info">@Html.ActionLink("Xem", "Details", new { id = item.IDCauHoi })</button>
                         <button type="button" class="btn btn-warning">@Html.ActionLink("Sửa", "Edit", new { id = item.IDCauHoi })</button>
                     </td>
                 </tr>

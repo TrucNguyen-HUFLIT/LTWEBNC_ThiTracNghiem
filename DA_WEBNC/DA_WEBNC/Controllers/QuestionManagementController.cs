@@ -13,10 +13,10 @@ namespace DA_WEBNC.Controllers
 {
     public class QuestionManagementController : Controller
     {
-        private TracNghiemOnlineEntities db = new TracNghiemOnlineEntities();
+        private readonly TracNghiemOnlineEntities db = new TracNghiemOnlineEntities();
 
         // GET: QuestionManagement
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string IDCauHoi)
         {
             //Try catch để kiểm tra Session["email"] khi chưa khởi tạo
             try
@@ -25,8 +25,16 @@ namespace DA_WEBNC.Controllers
                 string email = Session["email"].ToString();
                 if (email == null)
                     return RedirectToAction("Login", "Login");
-                var cauHois = db.CauHois.Include(c => c.DapAn);
-                return View(cauHois.ToList());
+                var listCauHois = await db.CauHois.ToListAsync();
+                if (IDCauHoi != null)
+                {
+                    listCauHois = new List<CauHoi>
+                    {
+                        await db.CauHois.FindAsync(IDCauHoi),
+                    };
+                    ViewBag.Added = "Added";
+                }
+                return View(listCauHois);
             }
             catch
             {
@@ -34,60 +42,46 @@ namespace DA_WEBNC.Controllers
             }
         }
 
-        // GET: QuestionManagement/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CauHoi cauHoi = db.CauHois.Find(id);
-            if (cauHoi == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cauHoi);
-        }
 
         // GET: QuestionManagement/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             var model = new CauHoiViewModel
             {
-                cauHoi = new CauHoi { IDCauHoi = GetIDCH() },
-                listCauHoi = db.CauHois.ToArray()
+                cauHoi = new CauHoi { IDCauHoi = await GetIDCH() },
+                listCauHoi = await db.CauHois.ToArrayAsync()
             };
-            CauHoi cauHoi = new CauHoi();
-            ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
+            //CauHoi cauHoi = new CauHoi();
+            //ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "IDCauHoi,CauHoi1,A,B,C,D,IDDapAn")] CauHoi cauHoi)
+        public async Task<ActionResult> Create(/*[Bind(Include = "IDCauHoi,CauHoi1,A,B,C,D,DapAn")]*/ CauHoi cauHoi)
         {
             if (ModelState.IsValid)
             {
                 db.CauHois.Add(cauHoi);
-                db.SaveChanges();
-                return RedirectToAction("CauHoi", new { ID = cauHoi.IDCauHoi });
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index", new { cauHoi.IDCauHoi });
             }
-            ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
+            //ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
             return View(cauHoi);
         }
 
         // GET: QuestionManagement/Edit/5
-        public ActionResult Edit(string id)
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CauHoi cauHoi = db.CauHois.Find(id);
+            CauHoi cauHoi = await db.CauHois.FindAsync(id);
             if (cauHoi == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
+            //ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
             return View(cauHoi);
         }
 
@@ -96,19 +90,19 @@ namespace DA_WEBNC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDCauHoi,CauHoi1,A,B,C,D,IDDapAn")] CauHoi cauHoi)
+        public async Task<ActionResult> Edit([Bind(Include = "IDCauHoi,CauHoi1,A,B,C,D,DapAn")] CauHoi cauHoi)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(cauHoi).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
+            //ViewBag.IDDapAn = new SelectList(db.DapAns, "IDDapAn", "DapAn1", cauHoi.IDDapAn);
             return View(cauHoi);
         }
 
-        public string GetIDCH()
+        public async Task<string> GetIDCH()
         {
             //var list = db.CauHois.ToArray();
 
@@ -118,7 +112,7 @@ namespace DA_WEBNC.Controllers
 
             //return ID;
 
-            var list = db.CauHois.ToArray();
+            var list = await db.CauHois.ToArrayAsync();
             int[] listID = new int[list.Length];
 
             for (int i = 0; i < list.Length; i++)

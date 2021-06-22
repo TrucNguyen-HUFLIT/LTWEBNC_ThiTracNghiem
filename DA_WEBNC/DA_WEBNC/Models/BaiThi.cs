@@ -21,11 +21,11 @@ namespace DA_WEBNC.Models
             this.BaiThiHS = new HashSet<BaiThiH>();
             this.CTBTs = new HashSet<CTBT>();
         }
-    
+
         public string IDBaiThi { get; set; }
         public string TenBaiThi { get; set; }
         public Nullable<System.TimeSpan> ThoiGianLamBai { get; set; }
-       
+
         [NotMapped]
         public string SoPhutLamBai { get; set; }
 

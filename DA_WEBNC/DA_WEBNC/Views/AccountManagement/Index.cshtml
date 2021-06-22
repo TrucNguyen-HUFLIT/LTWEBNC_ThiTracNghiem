@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DA_WEBNC.Models.NhanVien>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách nhân viên";
     Layout = "~/Views/Shared/_ManagerLayout.cshtml";
 }
 
@@ -63,7 +63,7 @@
                                     Nhân viên
                                 </td>
                                 <td class="text-center">
-                                    @Html.ActionLink("Edit", "Edit", new {  id=item.IDNhanVien }, new {@class = "btn btn-warning" }) 
+                                    @Html.ActionLink("Sửa", "Edit", new {  id=item.IDNhanVien }, new {@class = "btn btn-warning" }) 
                                     @*@Html.ActionLink("Details", "Details", new { id = item.IDNhanVien }, new { @class = "btn btn-success" } ) |*@
                                 </td>
                             </tr>

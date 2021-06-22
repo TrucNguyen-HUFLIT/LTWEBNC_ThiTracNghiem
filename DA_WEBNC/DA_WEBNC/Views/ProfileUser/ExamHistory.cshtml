@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DA_WEBNC.Models.BaiThiH>
 
 @{
-    ViewBag.Title = "History_Exam";
+    ViewBag.Title = "Lịch sử bài thi";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <link href="~/Content/style.css" rel="stylesheet" />
@@ -35,9 +35,9 @@
                     <p>Điểm</p>
                     <span><b>@item.TongSoDiem</b></span>
                 </div>
-                @*<div class="btn-item-exam">
-                        <a href="@Url.Action("Result_Exam", "Home")"><input class="btn btn-link" type="submit" value="Xem kết quả chi tiết >>" /></a>
-                    </div>*@
+                <div class="btn-item-exam">
+                        <a href="@Url.Action("ExamResult", "ProfileUser", new { item.IDBaiThiHS })"><input class="btn btn-link" type="submit" value="Xem kết quả chi tiết >>" /></a>
+                    </div>
                 <hr />
             </div>
         }
