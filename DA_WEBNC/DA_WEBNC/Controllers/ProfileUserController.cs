@@ -130,6 +130,7 @@ namespace DA_WEBNC.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
+
         public string HashPassword(string password)
         {
             //Tạo MD5 
