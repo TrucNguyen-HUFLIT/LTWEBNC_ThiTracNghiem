@@ -1,6 +1,6 @@
 ﻿
 .profile_img {
-    width: 350px;
+    width: 300px;
     margin-left: 50px;
     margin-top: 50px;
     background-color: white;
@@ -11,10 +11,11 @@
 }
 
 .profile_content {
-    margin-left: 50px;
+    margin-left: 20px;
     margin-top: 50px;
     background-color: white;
     height: 550px;
+    width: 780px;
     float: left;
     position: relative;
     border-radius: 2%;

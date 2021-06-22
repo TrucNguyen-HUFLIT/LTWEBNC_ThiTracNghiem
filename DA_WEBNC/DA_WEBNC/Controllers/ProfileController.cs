@@ -70,6 +70,52 @@ namespace DA_WEBNC.Controllers
             return View(nhanVien);
         }
 
+        public ActionResult ChangePassword()
+        {
+            try
+            {
+                string email = Session["email"].ToString();
+                if (email != null)
+                {
+                    var model = _database.NhanViens.Where(x => x.Email == email).FirstOrDefault();
+                    return View(model);
+                }
+                return RedirectToAction("Login", "Login");
+            }
+            catch
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(ChangePassword changepass)
+        {
+            var model = new ViewModelNV();
+            model.nhanVien = await _database.NhanViens.Where(x => x.Email == changepass.Email).FirstOrDefaultAsync();
+            if (model.nhanVien != null)
+            {
+                if (model.nhanVien.Password == changepass.Password)
+                {
+                    if (changepass.NewPassword == changepass.ConfirmPass)
+                    {
+                        model.nhanVien.Password = changepass.NewPassword;
+
+                        _database.NhanViens.Attach(model.nhanVien);
+                        _database.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                        await _database.SaveChangesAsync();
+                        TempData["result"] = "Đổi mật khẩu thành công !!!";
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorPass = "Sai mật khẩu";
+                    return View(model);
+                }
+            }
+            return View();
+        }
+
         public string HashPassword(string password)
         {
             //Tạo MD5 
