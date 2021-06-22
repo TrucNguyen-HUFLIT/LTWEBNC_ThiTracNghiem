@@ -68,50 +68,42 @@ namespace DA_WEBNC.Controllers
             return View(nhanVien);
         }
 
-        public ActionResult ChangePassword()
+        public async Task<ActionResult> ChangePassword()
         {
-            try
-            {
-                string email = Session["email"].ToString();
-                if (email != null)
-                {
-                    var model = _database.NhanViens.Where(x => x.Email == email).FirstOrDefault();
-                    return View(model);
-                }
-                return RedirectToAction("Login", "Login");
-            }
-            catch
+            if (Session["email"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+            string email = Session["email"].ToString();
+
+            ChangePassword changepass = new ChangePassword
+            {
+                IDNhanVien = await _database.NhanViens.Where(x => x.Email == email).Select(x => x.IDNhanVien).FirstOrDefaultAsync()
+            };
+            return View(changepass);
+
         }
         [HttpPost]
         public async Task<ActionResult> ChangePassword(ChangePassword changepass)
         {
-            var model = new ViewModelNV();
-            model.nhanVien = await _database.NhanViens.Where(x => x.Email == changepass.Email).FirstOrDefaultAsync();
-            if (model.nhanVien != null)
+            if (Session["email"] == null)
             {
-                if (model.nhanVien.Password == changepass.Password)
-                {
-                    if (changepass.NewPassword == changepass.ConfirmPass)
-                    {
-                        model.nhanVien.Password = changepass.NewPassword;
-
-                        _database.NhanViens.Attach(model.nhanVien);
-                        _database.Entry(model).State = System.Data.Entity.EntityState.Modified;
-                        await _database.SaveChangesAsync();
-                        TempData["result"] = "Đổi mật khẩu thành công !!!";
-                        return View(model);
-                    }
-                }
-                else
-                {
-                    ViewBag.ErrorPass = "Sai mật khẩu";
-                    return View(model);
-                }
+                return RedirectToAction("Login", "Login");
             }
-            return View();
+            if (ModelState.IsValid)
+            {
+                var nhanVien = await _database.NhanViens.FindAsync(changepass.IDNhanVien);
+                if (nhanVien.Password == HashPassword(changepass.OldPassword))
+                    nhanVien.Password =  HashPassword(changepass.NewPassword);
+
+                _database.NhanViens.Attach(nhanVien);
+                _database.Entry(nhanVien).State = EntityState.Modified;
+                await _database.SaveChangesAsync();
+
+                ViewBag.Done = "Done";
+                return View(new ChangePassword());
+            }
+            return View(changepass);
         }
 
         public string HashPassword(string password)
