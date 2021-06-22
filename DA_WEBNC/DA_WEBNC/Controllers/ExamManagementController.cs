@@ -1,8 +1,10 @@
 ﻿using DA_WEBNC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,50 +15,66 @@ namespace DA_WEBNC.Controllers
         // GET: ExamManagement
         readonly TracNghiemOnlineEntities _database = new TracNghiemOnlineEntities();
 
-        public ActionResult Index()
-        {            //Try catch để kiểm tra Session["email"] khi chưa khởi tạo
-            try
-            {
-                //email get value từ Session["email"]
-                string email = Session["email"].ToString();
-                if (email == null)
-                    return RedirectToAction("Login", "Login");
-                var dsBaiThi = _database.BaiThis.ToList();
-                return View(dsBaiThi);
-            }
-            catch
+        public async Task<ActionResult> Index()
+        {
+            if (Session["email"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+
+            var dsBaiThi = await _database.BaiThis.ToListAsync();
+            return View(dsBaiThi);
         }
 
-        public ActionResult Detail(string id)
+        public async Task<ActionResult> Detail(string id)
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiThiViewModel baiThi = new BaiThiViewModel();
-            baiThi.BaiThi = _database.BaiThis.Find(id);
-            if (baiThi == null)
-            {
-                return HttpNotFound();
-            }
+
+            BaiThi baiThi = await _database.BaiThis.FindAsync(id);
+
             return View(baiThi);
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> CreateBT()
         {
-            return View();
-        }
-        public ActionResult Create(BaiThi baiThi)
-        {
-            return View();
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            BaiThi baiThi = new BaiThi
+            {
+                IDBaiThi = await GetIDBT(),
+            };
+            return View(baiThi);
         }
 
-        public string GetIDBT()
+        [HttpPost]
+        public async Task<ActionResult> CreateBT(BaiThi baiThi)
         {
-            var list = _database.BaiThis.ToArray();
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (ModelState.IsValid)
+            {
+                _database.BaiThis.Add(baiThi);
+                await _database.SaveChangesAsync();
+            }
+            return View("Index");
+        }
+
+        public async Task<string> GetIDBT()
+        {
+            var list = await _database.BaiThis.ToArrayAsync();
             int[] listID = new int[list.Length];
 
             for (int i = 0; i < list.Length; i++)
@@ -71,7 +89,7 @@ namespace DA_WEBNC.Controllers
                     lastID = listID[i];
                 }
             }
-            string ID = "CH" + ++lastID;
+            string ID = "BT" + ++lastID;
             return ID;
 
         }

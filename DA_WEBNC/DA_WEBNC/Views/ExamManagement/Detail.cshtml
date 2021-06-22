@@ -1,27 +1,42 @@
-﻿@model IEnumerable<DA_WEBNC.Models.BaiThiViewModel>
+﻿@model DA_WEBNC.Models.BaiThi
 @{
     ViewBag.Title = "Chi tiết bài thi";
     Layout = "~/Views/Shared/_ManagerLayout.cshtml";
 }
 
-<h2>Detail</h2>
+<link href="~/Content/style1.css" rel="stylesheet" />s
+<div class="body-content">
+    <div class="container mt-3">
+        <h2 style=" margin-right: 40px;">Chi tiết bài thi</h2>
+        <br />
+        @Html.ActionLink("Thêm câu hỏi", "AddCH", "", new { @class = "btn btn-info", @style = "margin-left: 43%" })
+        <br />
+        <br />
 
-<div>
-    <h4>BaiThi</h4>
-    <hr />
-    @foreach (var item in Model)
-    {
-        <div class="item-exam">
-            <div class="content-item-exam">
-                <span>Câu hỏi</span><p>@Html.DisplayFor(modelItem => item.CTBT.IDCauHoi)</p>
-            </div>
-            <div class="content-item-exam">
-                <span>Câu hỏi</span><p>@Html.DisplayFor(modelItem => item.CTBT.CauHoi)</p>
-            </div>
+        <div class="body-main">
+            <table class="table">
+                <tr>
+                    <th class="text-center">
+                        ID Câu hỏi
+                    </th>
+                    <th class="text-center">
+                        Câu hỏi
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.CTBTs)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.IDCauHoi)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.CauHoi)
+                        </td>
+                    </tr>
+                }
+            </table>
+            @Html.ActionLink("Trở về", "Index", "", new { @class = "btn btn-info", @style = "margin-left: 45%" })
         </div>
-    }
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

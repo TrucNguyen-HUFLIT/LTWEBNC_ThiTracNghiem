@@ -28,9 +28,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@DA_WEBNC.Models.StaticAcc.Name <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/Login/Login"><span class="glyphicon glyphicon-log-out"> </span> &nbsp; Đăng xuất</a></li>
+                            <li><a href="@Url.Action("Logout","Login")"><span class="glyphicon glyphicon-log-out"> </span> &nbsp; Đăng xuất</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="https://www.w3schools.com/"><span class="glyphicon glyphicon-question-sign"> </span> &nbsp; Help</a></li>
+                            @*<li><a href="https://www.w3schools.com/"><span class="glyphicon glyphicon-question-sign"> </span> &nbsp; Help</a></li>*@
                         </ul>
                     </li>
                 </ul>
@@ -68,7 +68,7 @@
                         <li><a href="/QuestionManagement/Index"><i class="glyphicon glyphicon-question-sign"></i> Quản lý câu hỏi</a></li>
                     }
                     <li><a href="/Profile/ChangePasswordNV"><i class="glyphicon glyphicon-edit"></i> Đổi mật khẩu</a></li>
-                    <li><a href="/Login/Login"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
+                    <li><a href="@Url.Action("Logout","Login")"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
