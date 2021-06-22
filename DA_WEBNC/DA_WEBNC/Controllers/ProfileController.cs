@@ -28,8 +28,6 @@ namespace DA_WEBNC.Controllers
             string email = Session["email"].ToString();
 
             var model = await _database.NhanViens.Where(x => x.Email == email).FirstOrDefaultAsync();
-            StaticAcc.Name = model.Name;
-            StaticAcc.Role = model.IDRole == 1 ? "Admin" : "NhanVien";
             return View(model);
         }
         [HttpPost]
