@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CodePen - bootstrap sidebar</title>
+    <title>Trắc nghiệm Online | @ViewBag.Title</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -57,11 +57,16 @@
             <!-- Main Menu -->
             <div class="side-menu-container">
                 <ul class="nav navbar-nav">
-
                     <li><a href="/Profile/Index"><i class="glyphicon glyphicon-info-sign"></i> Thông tin cá nhân</a></li>
-                    <li><a href="/AccountManagement/Index"><i class="glyphicon glyphicon-user"></i> Quản lý tài khoản</a></li>
-                    <li><a href="/ExamManagement/Index"><i class="glyphicon glyphicon-list-alt"></i> Quản lý bài thi</a></li>
-                    <li><a href="/QuestionManagement/Index"><i class="glyphicon glyphicon-question-sign"></i> Quản lý câu hỏi</a></li>
+                    @if (@DA_WEBNC.Models.StaticAcc.Role == "Admin")
+                    {
+                        <li><a href="/AccountManagement/Index"><i class="glyphicon glyphicon-user"></i> Quản lý tài khoản</a></li>
+                    }
+                    else if (@DA_WEBNC.Models.StaticAcc.Role == "NhanVien")
+                    {
+                        <li><a href="/ExamManagement/Index"><i class="glyphicon glyphicon-list-alt"></i> Quản lý bài thi</a></li>
+                        <li><a href="/QuestionManagement/Index"><i class="glyphicon glyphicon-question-sign"></i> Quản lý câu hỏi</a></li>
+                    }
                     <li><a href="/Profile/ChangePasswordNV"><i class="glyphicon glyphicon-edit"></i> Đổi mật khẩu</a></li>
                     <li><a href="/Login/Login"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
                 </ul>

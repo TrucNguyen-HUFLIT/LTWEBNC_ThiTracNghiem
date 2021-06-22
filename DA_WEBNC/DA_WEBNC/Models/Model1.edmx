@@ -33,7 +33,7 @@
           <Property Name="B" Type="nvarchar" MaxLength="50" />
           <Property Name="C" Type="nvarchar" MaxLength="50" />
           <Property Name="D" Type="nvarchar" MaxLength="50" />
-          <Property Name="IDDapAn" Type="int" />
+          <Property Name="DapAn" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CTBT">
           <Key>
@@ -51,15 +51,8 @@
           </Key>
           <Property Name="IDBaiThiHS" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IDCauHoi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CauTraLoi" Type="char" MaxLength="10" />
-          <Property Name="DapAn" Type="char" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="DapAn">
-          <Key>
-            <PropertyRef Name="IDDapAn" />
-          </Key>
-          <Property Name="IDDapAn" Type="int" Nullable="false" />
-          <Property Name="DapAn" Type="char" MaxLength="10" />
+          <Property Name="CauTraLoi" Type="nvarchar" MaxLength="50" />
+          <Property Name="DapAn" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HocSinh">
           <Key>
@@ -125,18 +118,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CauHoi_DapAn">
-          <End Role="DapAn" Type="Self.DapAn" Multiplicity="0..1" />
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DapAn">
-              <PropertyRef Name="IDDapAn" />
-            </Principal>
-            <Dependent Role="CauHoi">
-              <PropertyRef Name="IDDapAn" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ChiTietBaiThi_BaiThi">
           <End Role="BaiThi" Type="Self.BaiThi" Multiplicity="1" />
           <End Role="CTBT" Type="Self.CTBT" Multiplicity="*" />
@@ -191,7 +172,6 @@
           <EntitySet Name="CauHoi" EntityType="Self.CauHoi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTBT" EntityType="Self.CTBT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTBTHS" EntityType="Self.CTBTHS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DapAn" EntityType="Self.DapAn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HocSinh" EntityType="Self.HocSinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -203,10 +183,6 @@
           <AssociationSet Name="FK_BaiThiHS_HocSinh" Association="Self.FK_BaiThiHS_HocSinh">
             <End Role="HocSinh" EntitySet="HocSinh" />
             <End Role="BaiThiHS" EntitySet="BaiThiHS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CauHoi_DapAn" Association="Self.FK_CauHoi_DapAn">
-            <End Role="DapAn" EntitySet="DapAn" />
-            <End Role="CauHoi" EntitySet="CauHoi" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietBaiThi_BaiThi" Association="Self.FK_ChiTietBaiThi_BaiThi">
             <End Role="BaiThi" EntitySet="BaiThi" />
@@ -262,8 +238,7 @@
           <Property Name="B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="D" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IDDapAn" Type="Int32" />
-          <NavigationProperty Name="DapAn" Relationship="Self.FK_CauHoi_DapAn" FromRole="CauHoi" ToRole="DapAn" />
+          <Property Name="DapAn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CTBTs" Relationship="Self.FK_ChiTietBaiThi_CauHoi" FromRole="CauHoi" ToRole="CTBT" />
         </EntityType>
         <EntityType Name="CTBT">
@@ -284,16 +259,8 @@
           </Key>
           <Property Name="IDBaiThiHS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IDCauHoi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CauTraLoi" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="DapAn" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-        </EntityType>
-        <EntityType Name="DapAn">
-          <Key>
-            <PropertyRef Name="IDDapAn" />
-          </Key>
-          <Property Name="IDDapAn" Type="Int32" Nullable="false" />
-          <Property Name="DapAn1" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="CauHois" Relationship="Self.FK_CauHoi_DapAn" FromRole="DapAn" ToRole="CauHoi" />
+          <Property Name="CauTraLoi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DapAn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HocSinh">
           <Key>
@@ -376,18 +343,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CauHoi_DapAn">
-          <End Role="DapAn" Type="Self.DapAn" Multiplicity="0..1" />
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DapAn">
-              <PropertyRef Name="IDDapAn" />
-            </Principal>
-            <Dependent Role="CauHoi">
-              <PropertyRef Name="IDDapAn" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ChiTietBaiThi_CauHoi">
           <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1" />
           <End Role="CTBT" Type="Self.CTBT" Multiplicity="*" />
@@ -430,7 +385,6 @@
           <EntitySet Name="CauHois" EntityType="Self.CauHoi" />
           <EntitySet Name="CTBTs" EntityType="Self.CTBT" />
           <EntitySet Name="CTBTHS" EntityType="Self.CTBTH" />
-          <EntitySet Name="DapAns" EntityType="Self.DapAn" />
           <EntitySet Name="HocSinhs" EntityType="Self.HocSinh" />
           <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
@@ -446,10 +400,6 @@
           <AssociationSet Name="FK_BaiThiHS_HocSinh" Association="Self.FK_BaiThiHS_HocSinh">
             <End Role="HocSinh" EntitySet="HocSinhs" />
             <End Role="BaiThiHS" EntitySet="BaiThiHS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CauHoi_DapAn" Association="Self.FK_CauHoi_DapAn">
-            <End Role="DapAn" EntitySet="DapAns" />
-            <End Role="CauHoi" EntitySet="CauHois" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietBaiThi_CauHoi" Association="Self.FK_ChiTietBaiThi_CauHoi">
             <End Role="CauHoi" EntitySet="CauHois" />
@@ -499,7 +449,7 @@
                 <ScalarProperty Name="B" ColumnName="B" />
                 <ScalarProperty Name="C" ColumnName="C" />
                 <ScalarProperty Name="D" ColumnName="D" />
-                <ScalarProperty Name="IDDapAn" ColumnName="IDDapAn" />
+                <ScalarProperty Name="DapAn" ColumnName="DapAn" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -519,14 +469,6 @@
                 <ScalarProperty Name="IDCauHoi" ColumnName="IDCauHoi" />
                 <ScalarProperty Name="CauTraLoi" ColumnName="CauTraLoi" />
                 <ScalarProperty Name="DapAn" ColumnName="DapAn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DapAns">
-            <EntityTypeMapping TypeName="TracNghiemOnlineModel.DapAn">
-              <MappingFragment StoreEntitySet="DapAn">
-                <ScalarProperty Name="IDDapAn" ColumnName="IDDapAn" />
-                <ScalarProperty Name="DapAn1" ColumnName="DapAn" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

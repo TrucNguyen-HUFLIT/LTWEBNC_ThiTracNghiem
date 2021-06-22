@@ -25,6 +25,7 @@ namespace DA_WEBNC.Controllers
                 {
                     var model = _database.NhanViens.Where(x => x.Email == email).FirstOrDefault();
                     StaticAcc.Name = model.Name;
+                    StaticAcc.Role = model.IDRole == 1 ? "Admin" : "NhanVien";
                     return View(model);
                 }
                 return RedirectToAction("Login", "Login");

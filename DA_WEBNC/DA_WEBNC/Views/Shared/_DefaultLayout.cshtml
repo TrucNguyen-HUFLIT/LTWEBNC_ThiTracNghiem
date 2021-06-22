@@ -4,7 +4,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trắc nghiệm Online</title>
+    <title>Trắc nghiệm Online | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/style.css" rel="stylesheet" />
@@ -18,30 +18,56 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Trắc nghiệm 24H", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (@ViewBag.Testing == null)
+                {
+                    @Html.ActionLink("Trắc nghiệm 24H", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    <a class="navbar-brand">Trắc nghiệm 24H</a>
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Danh sách bài thi", "ExamList", "Home")</li>
+                    @if (@ViewBag.Testing == null)
+                    {
+                        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Danh sách bài thi", "ExamList", "Home")</li>
+                    }
+                    else
+                    {
+                        <li><a>Trang chủ</a></li>
+                        <li><a>Danh sách bài thi</a></li>
+                    }
+
                     <li>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@DA_WEBNC.Models.StaticAcc.Name<span class="caret"></span></a>
 
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Thông tin cá nhân", "Index", "ProfileUser")</li>
-                                    <li>@Html.ActionLink("Lịch sử làm bài", "ExamHistory", "ProfileUser")</li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>@Html.ActionLink("Đăng xuất", "Logout", "Login")</li>
+                                    @if (@ViewBag.Testing == null)
+                                    {
+                                        <li>@Html.ActionLink("Thông tin cá nhân", "Index", "ProfileUser")</li>
+                                        <li>@Html.ActionLink("Lịch sử làm bài", "ExamHistory", "ProfileUser")</li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>@Html.ActionLink("Đăng xuất", "Logout", "Login")</li>
+                                    }
+                                    else
+                                    {
+                                        <li><a>Thông tin cá nhân</a></li>
+                                        <li><a>Lịch sử làm bài</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a>Đăng xuất</a></li>
+                                    }
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     @*khi hover vào ảnh và tên user sẽ dropdown list xuống các item
-                        1. Thông tin cá nhân
-                        2. Lịch sử làm bài
-                        3. Đăng xuất*@
+        1. Thông tin cá nhân
+        2. Lịch sử làm bài
+        3. Đăng xuất*@
                 </ul>
             </div>
         </div>

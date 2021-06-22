@@ -143,9 +143,20 @@ namespace DA_WEBNC.Controllers
         public string GetIDNhanVien()
         {
             var list = _database.NhanViens.ToArray();
+            int[] listID = new int[list.Length];
 
-            int.TryParse(list[list.Length - 1].IDNhanVien.Substring(2), out int lastID);
-
+            for (int i = 0; i < list.Length; i++)
+            {
+                int.TryParse(list[i].IDNhanVien.Substring(2), out listID[i]);
+            }
+            int lastID = 0;
+            for (int i = 0; i < listID.Length; i++)
+            {
+                if (listID[i] > lastID)
+                {
+                    lastID = listID[i];
+                }
+            }
             string ID = "NV" + ++lastID;
             return ID;
         }

@@ -1,46 +1,89 @@
-﻿@model DA_WEBNC.Models.BaiThi
+﻿@model DA_WEBNC.Models.ExamTestViewModel
 
 @{
-    ViewBag.Title = "List_Exam";
+    ViewBag.Title = "Làm bài thi";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
 <link href="~/Content/style.css" rel="stylesheet" />
 
 <div class="main-body">
     <div class="body-top">
-        <h2>@Model.TenBaiThi</h2>
+        <h2>@Model.BaiThi.TenBaiThi</h2>
 
         <div class="countdown-Exam">
             <p>Thời gian làm bài</p>
-            <p> <span id="time">@Model.SoPhutLamBai</span> phút!</p>
-            <input id="valueTime" type="text" value="@Model.SoPhutLamBai" hidden />
-            <button type="button" class="btn btn-success">@Html.ActionLink("Nộp bài", "ExamResult", "ProfileUser")</button>
+            <p> <span id="time">@Model.BaiThi.SoPhutLamBai</span> phút!</p>
+            @*<input id="valueTime" type="text" value="@Model.BaiThi.SoPhutLamBai" hidden />*@
+            @using (Html.BeginForm("Result", "Home", FormMethod.Post))
+            {
+                <input name="IDBaiThiHS" value="@Model.IDBaiThiHS" hidden />
+
+                @*<a href="@Url.Action("ExamResult", "ProfileUser")" class="btn btn-success">Nộp bài</a>*@
+                if (Model.CauHoi == null)
+                {
+                    <input type="submit" value="Nộp bài" class="btn btn-success" />
+                }
+            }
             <hr />
-            <button type="button" class="btn btn-danger">@Html.ActionLink("Thoát", "ExamList", "Home")</button>
+            @if (@ViewBag.Testing == null)
+            {
+                <a href="@Url.Action("ExamList", "Home")" class="btn btn-danger">Thoát</a>
+            }
         </div>
         <hr />
     </div>
     <div class="body-main">
-        @{
-            var count = 1;
-            foreach (var item in Model.CauHois)
+        @*@{
+                var count = 1;
+                foreach (var item in Model.ListCauHoi)
+                {
+
+                    <div class="item-Test">
+                        <h4>Câu @count:</h4>
+                        <h5 style="font-size: 110%">@item.CauHoi1</h5>
+                        <ul>
+                            <li><input type="radio" name="dapAn" value="@item.A" />&nbsp;&nbsp;&nbsp; A.  @item.A</li>
+                            <li><input type="radio" name="dapAn" value="@item.B" />&nbsp;&nbsp;&nbsp; B.  @item.B</li>
+                            <li><input type="radio" name="dapAn" value="@item.C" />&nbsp;&nbsp;&nbsp; C.  @item.C</li>
+                            <li><input type="radio" name="dapAn" value="@item.D" />&nbsp;&nbsp;&nbsp; D.  @item.D</li>
+                        </ul>
+                    </div>
+                    count++;
+                }
+            }*@
+        @if (Model.CauHoi != null)
+        {
+            using (Html.BeginForm("ExamTest", "Home", FormMethod.Post))
             {
+                <input name="ThoiGianLamBai" value="@Model.BaiThi.ThoiGianLamBai" hidden />
+                <input name="IDBaiThiHS" value="@Model.IDBaiThiHS" hidden />
+                <input name="IDBaiThi" value="@Model.BaiThi.IDBaiThi" hidden />
+                <input name="IDStudent" value="@Model.IDStudent" hidden />
+                <input name="IDCauHoi" value="@Model.CauHoi.IDCauHoi" hidden />
+                <input name="DapAn" value="@Model.CauHoi.DapAn" hidden />
 
                 <div class="item-Test">
-                    <h4>Câu @count:</h4>
-                    <h5 style="font-size: 110%">@item.CauHoi1</h5>
+                    <h4>Câu hỏi:</h4>
+                    <h5 style="font-size: 110%">@Model.CauHoi.CauHoi1</h5>
                     <ul>
-                        <li><input type="radio" name="dapAn" value="@item.A" />&nbsp;&nbsp;&nbsp; A.  @item.A</li>
-                        <li><input type="radio" name="dapAn" value="@item.B" />&nbsp;&nbsp;&nbsp; B.  @item.B</li>
-                        <li><input type="radio" name="dapAn" value="@item.C" />&nbsp;&nbsp;&nbsp; C.  @item.C</li>
-                        <li><input type="radio" name="dapAn" value="@item.D" />&nbsp;&nbsp;&nbsp; D.  @item.D</li>
+                        <li><input type="radio" name="CauTraLoi" value="A" />&nbsp;&nbsp;&nbsp; A.  @Model.CauHoi.A</li>
+                        <li><input type="radio" name="CauTraLoi" value="B" />&nbsp;&nbsp;&nbsp; B.  @Model.CauHoi.B</li>
+                        <li><input type="radio" name="CauTraLoi" value="C" />&nbsp;&nbsp;&nbsp; C.  @Model.CauHoi.C</li>
+                        <li><input type="radio" name="CauTraLoi" value="D" />&nbsp;&nbsp;&nbsp; D.  @Model.CauHoi.D</li>
                     </ul>
                 </div>
-                count++;
+
+                <input type="submit" value="Câu hỏi tiếp theo" class="btn btn-info" style="margin-left:45%" />
+
             }
         }
+        else
+        {
+            <div class="item-Test">
+                <h1>Bạn đã làm xong. Hãy nộp bài!</h1>
+            </div>
+        }
 
-        <hr />
     </div>
 </div>
 <script type="text/javascript">

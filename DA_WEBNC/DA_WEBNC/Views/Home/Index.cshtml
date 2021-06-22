@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<DA_WEBNC.Models.BaiThi>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
 <link href="~/Content/style.css" rel="stylesheet" />
@@ -32,7 +31,7 @@
                 <p><b>@item.ThoiGianLamBai</b></p>
             </div>
             <div class="btn-item-exam">
-                <a href="@Url.Action("ExamTest", "Home", new { id = item.IDBaiThi })"><input class="btn btn-link" type="submit" value="Thi thử ngay >>" /></a>
+                <a href="@Url.Action("ExamTest", "Home", new { item.IDBaiThi })"><input class="btn btn-link" type="submit" value="Thi thử ngay >>" /></a>
             </div>
         </div>
 

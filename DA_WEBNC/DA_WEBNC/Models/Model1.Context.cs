@@ -30,7 +30,6 @@ namespace DA_WEBNC.Models
         public virtual DbSet<CauHoi> CauHois { get; set; }
         public virtual DbSet<CTBT> CTBTs { get; set; }
         public virtual DbSet<CTBTH> CTBTHS { get; set; }
-        public virtual DbSet<DapAn> DapAns { get; set; }
         public virtual DbSet<HocSinh> HocSinhs { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<Role> Roles { get; set; }

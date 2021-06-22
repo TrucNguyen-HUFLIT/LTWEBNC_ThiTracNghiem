@@ -4,21 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f484789df99e46b58b48a9d460813a65" Name="Diagram1">
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.BaiThi" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.BaiThiH" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.CauHoi" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.CTBT" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.CTBTH" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.DapAn" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.HocSinh" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.NhanVien" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.Role" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TracNghiemOnlineModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="031b7fe02a294db0be7ba6f257d01df9" Name="Diagram1">
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.BaiThi" Width="1.5" PointX="8.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.BaiThiH" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.CauHoi" Width="1.5" PointX="8.125" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.CTBT" Width="1.5" PointX="8.125" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.CTBTH" Width="1.5" PointX="5.125" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.HocSinh" Width="1.5" PointX="2.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.NhanVien" Width="1.5" PointX="1.875" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.Role" Width="1.5" PointX="1.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TracNghiemOnlineModel.sysdiagram" Width="1.5" PointX="5.125" PointY="6.875" IsExpanded="true" />
         <AssociationConnector Association="TracNghiemOnlineModel.FK_BaiThiHS_BaiThi" ManuallyRouted="false" />
         <AssociationConnector Association="TracNghiemOnlineModel.FK_ChiTietBaiThi_BaiThi" ManuallyRouted="false" />
         <AssociationConnector Association="TracNghiemOnlineModel.FK_BaiThiHS_HocSinh" ManuallyRouted="false" />
-        <AssociationConnector Association="TracNghiemOnlineModel.FK_CauHoi_DapAn" ManuallyRouted="false" />
         <AssociationConnector Association="TracNghiemOnlineModel.FK_ChiTietBaiThi_CauHoi" ManuallyRouted="false" />
         <AssociationConnector Association="TracNghiemOnlineModel.FK_Student_Role" ManuallyRouted="false" />
         <AssociationConnector Association="TracNghiemOnlineModel.FK_NhanVien_Role" ManuallyRouted="false" />

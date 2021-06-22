@@ -36,10 +36,9 @@ namespace DA_WEBNC.Models
         [Required]
         public string D { get; set; }
 
-        [Display(Name = "ID Đáp án")]
-        public Nullable<int> IDDapAn { get; set; }
+        [Display(Name = "Đáp án")]
+        public string DapAn { get; set; }
 
-        public virtual DapAn DapAn { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTBT> CTBTs { get; set; }
     }

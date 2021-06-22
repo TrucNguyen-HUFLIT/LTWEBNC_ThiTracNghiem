@@ -1,6 +1,7 @@
 ﻿using DA_WEBNC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -106,7 +107,7 @@ namespace DA_WEBNC.Controllers
             }
         }
 
-        public ActionResult ExamResult(string id)
+        public async Task<ActionResult> ExamResult(string IDBaiThiHS)
         {
             //Try catch để kiểm tra Session["email"] khi chưa khởi tạo
             try
@@ -115,7 +116,12 @@ namespace DA_WEBNC.Controllers
                 string email = Session["email"].ToString();
                 if (email == null)
                     return RedirectToAction("Login", "Login");
-                var model = _database.CTBTHS.Where(x => x.IDBaiThiHS == id).ToList();
+
+                var model = new ExamResultViewModel
+                {
+                    ListCTBTHS = await _database.CTBTHS.Where(x => x.IDBaiThiHS == IDBaiThiHS).ToListAsync(),
+                    TongSoDiem = await _database.BaiThiHS.Where(x=>x.IDBaiThiHS == IDBaiThiHS).Select(x=>x.TongSoDiem).FirstOrDefaultAsync(),
+                };
 
                 return View(model);
             }
