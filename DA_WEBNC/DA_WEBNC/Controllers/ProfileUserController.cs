@@ -27,7 +27,6 @@ namespace DA_WEBNC.Controllers
                 if (email != null)
                 {
                     var model = _database.HocSinhs.Where(x => x.Email == email).FirstOrDefault();
-                    StaticAcc.Name = model.Name;
                     return View(model);
                 }
                 return RedirectToAction("Login", "Login");

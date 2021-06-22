@@ -29,7 +29,7 @@ namespace DA_WEBNC.Models
         [Display(Name = "Mật khẩu")]
         [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Password { get; set; }
-        [Display(Name = "Tên nhân viên")]
+        [Display(Name = "Tên học sinh")]
         [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Name { get; set; }
         public string Avatar { get; set; }

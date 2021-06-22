@@ -38,11 +38,16 @@ namespace DA_WEBNC.Controllers
                 {
                     //Khởi tạo (Set) Session["email"]
                     Session["email"] = loginModel.Email;
+                    StaticAcc.Name = modelNV.Name;
+                    StaticAcc.Role = modelNV.IDRole == 1 ? "Admin" : "NhanVien";
+
                     return RedirectToAction("Index", "Profile");
                 }
                 else if (modelHS != null)
                 {
                     Session["email"] = loginModel.Email;
+                    StaticAcc.Name = modelHS.Name;
+
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -63,6 +68,7 @@ namespace DA_WEBNC.Controllers
                     IDStudent = GetIDHocSinh(),
                     Email = registerModel.Email,
                     Password = HashPassword(registerModel.Password),
+                    Name = "Hãy cập nhật tên",
                     IDRole = 3
                 };
                 _database.HocSinhs.Add(model);
