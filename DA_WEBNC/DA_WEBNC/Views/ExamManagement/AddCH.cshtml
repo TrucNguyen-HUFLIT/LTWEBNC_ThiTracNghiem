@@ -1,0 +1,51 @@
+﻿@model DA_WEBNC.Models.AddCHViewModel
+
+@{
+    ViewBag.Title = "Thêm câu hỏi vào bài thi";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+
+
+<link href="~/Content/style.css" rel="stylesheet" />
+<link href="~/Content/style1.css" rel="stylesheet" />
+<div class="body-content">
+    <div class="container mt-3">
+        <h2>Thêm câu hỏi vào bài thi @Model.BaiThi.TenBaiThi</h2>
+        <br /><br />
+        <div class="add-Exam-item">
+            <div class="add-Exam-item-item">
+                @using (Html.BeginForm("AddCH", "ExamManagement", FormMethod.Post, new { enctype = "multipart/form-data", @style = "margin-left: 25%" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <input name="IDBaiThi" value="@Model.BaiThi.IDBaiThi" hidden />
+                        <div class="form-group">
+                            <label class="control-label col-md-4" style="font-size:25px">Chọn câu hỏi</label>
+                            <div class="col-md-8">
+                                <select name="IDCauHoi" style="padding:10px">
+                                    @foreach (var item in Model.ListCauHoi)
+                                    {
+                                        <option value="@item.IDCauHoi">@item.IDCauHoi: @item.CauHoi1</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <br /><br />
+
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-12">
+                                <input type="submit" value="Thêm" class="btn btn-info" />
+                                @Html.ActionLink("Trở về", "Index", "", new { @class = "btn btn-default", @style = "margin-left: 10px" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
