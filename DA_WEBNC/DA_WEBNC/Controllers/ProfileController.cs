@@ -1,6 +1,7 @@
 ﻿using DA_WEBNC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -16,45 +17,35 @@ namespace DA_WEBNC.Controllers
         // GET: Profile
         readonly TracNghiemOnlineEntities _database = new TracNghiemOnlineEntities();
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            try
-            {
-                string email = Session["email"].ToString();
-                if (email != null)
-                {
-                    var model = _database.NhanViens.Where(x => x.Email == email).FirstOrDefault();
-                    StaticAcc.Name = model.Name;
-                    StaticAcc.Role = model.IDRole == 1 ? "Admin" : "NhanVien";
-                    return View(model);
-                }
-                return RedirectToAction("Login", "Login");
-            }
-            catch
+
+            if (Session["email"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
 
+            string email = Session["email"].ToString();
+
+            var model = await _database.NhanViens.Where(x => x.Email == email).FirstOrDefaultAsync();
+            StaticAcc.Name = model.Name;
+            StaticAcc.Role = model.IDRole == 1 ? "Admin" : "NhanVien";
+            return View(model);
         }
         [HttpPost]
         public async Task<ActionResult> Index(NhanVien nhanVien)
         {
-            try
-            {
-                string email = Session["email"].ToString();
-                if (email == null)
-                    return RedirectToAction("Login", "Login");
-            }
-            catch
+            if (Session["email"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
-            var model = _database.NhanViens.Where(x => x.IDNhanVien == nhanVien.IDNhanVien).FirstOrDefault();
+
+            var model = await _database.NhanViens.Where(x => x.IDNhanVien == nhanVien.IDNhanVien).FirstOrDefaultAsync();
             nhanVien.Avatar = model.Avatar;
 
             if (ModelState.IsValid)
             {
-                if(model.Password == HashPassword(nhanVien.Password))
+                if (model.Password == HashPassword(nhanVien.Password))
                 {
                     model.Name = nhanVien.Name;
                     model.Address = nhanVien.Address;
@@ -70,7 +61,7 @@ namespace DA_WEBNC.Controllers
                     }
 
                     _database.NhanViens.Attach(model);
-                    _database.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                    _database.Entry(model).State = EntityState.Modified;
                     await _database.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }

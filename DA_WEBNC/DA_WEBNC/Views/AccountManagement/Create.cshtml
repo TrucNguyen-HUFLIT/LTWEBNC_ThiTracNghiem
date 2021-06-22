@@ -25,68 +25,68 @@
         </div>
         <br /> <br /> <br />
 
-                      <div class="item-info">
-                          <div class="row">
-                              @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-sm-4" })
-                              <div class="col-sm-8">
-                                  @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="item-info">
+            <div class="row">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-sm-4" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
 
-                              </div>
-                              @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 
-                          </div>
-                          <br />
+            </div>
+            <br />
 
-                          <div class="row">
-                              @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-4" })
-                              <div class="col-sm-8">
-                                  @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                              </div>
-                              @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <div class="row">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-4" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
-                          </div>
-                          <br />
-                          <div class="row">
-                              @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-sm-4" })
-                              <div class="col-sm-8">
-                                  @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                              </div>
-                              @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="row">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-sm-4" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 
-                          </div>
-                          <br />
+            </div>
+            <br />
 
-                          <div class="row">
-                              @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "col-sm-4" })
-                              <div class="col-sm-8">
-                                  @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                              </div>
-                              @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            <div class="row">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "col-sm-4" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
 
-                          </div>
-                          <br />
+            </div>
+            <br />
 
-                          <div class="row">
-                              <label class="col-sm-4">Vị trí</label>
-                              <div class="col-sm-8">
-                                  <select name="IDRole">
-                                      <option value="2">Nhân viên</option>
-                                      <option value="1">Admin</option>
-                                  </select>
-                                  @Html.ValidationMessageFor(model => model.IDRole, "", new { @class = "text-danger" })
-                              </div>
-                          </div>
+            <div class="row">
+                <label class="col-sm-4">Vị trí</label>
+                <div class="col-sm-8">
+                    <select name="IDRole">
+                        <option value="2">Nhân viên</option>
+                        <option value="1">Admin</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.IDRole, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                          <br /> <br />
+            <br /> <br />
 
-                          <div class="row">
-                              @*<button type="button" class="btn btn-primary">Cập nhật thông tin</button>*@
-                              <div class="col-sm-11 text-center">
-                                  <input type="submit" value="Thêm tài khoản" class="btn btn-info" />
-                                  @Html.ActionLink("Trở về", "Index", "", new { @class = "btn btn-default" })
-                              </div>
-                          </div>
-                      </div>
+            <div class="row">
+                @*<button type="button" class="btn btn-primary">Cập nhật thông tin</button>*@
+                <div class="col-sm-11 text-center">
+                    <input type="submit" value="Thêm tài khoản" class="btn btn-info" />
+                    @Html.ActionLink("Trở về", "Index", "", new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
 
 
     </div>

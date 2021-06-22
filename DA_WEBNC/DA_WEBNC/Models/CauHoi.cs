@@ -25,15 +25,15 @@ namespace DA_WEBNC.Models
         [Display(Name = "ID Câu hỏi")]
         public string IDCauHoi { get; set; }
         [Display(Name = "Câu hỏi")]
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string CauHoi1 { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string A { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string B { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string C { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string D { get; set; }
 
         [Display(Name = "Đáp án")]
