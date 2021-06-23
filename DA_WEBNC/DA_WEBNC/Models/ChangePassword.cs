@@ -4,8 +4,8 @@ namespace DA_WEBNC.Models
 {
     public class ChangePassword
     {
-        [Display(Name = "ID Nhân viên")]
-        public string IDNhanVien { get; set; }
+        [Display(Name = "ID")]
+        public string ID { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu hiện tại")]
