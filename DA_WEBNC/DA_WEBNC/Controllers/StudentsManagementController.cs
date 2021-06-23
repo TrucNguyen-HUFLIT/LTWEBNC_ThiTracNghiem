@@ -1,9 +1,5 @@
 ﻿using DA_WEBNC.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DA_WEBNC.Controllers
@@ -27,7 +23,6 @@ namespace DA_WEBNC.Controllers
             catch
             {
                 return RedirectToAction("Login", "Login");
-
             }
         }
         //public ActionResult Details()
