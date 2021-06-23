@@ -30,9 +30,7 @@ namespace DA_WEBNC.Controllers
             catch 
             {
                 return RedirectToAction("Login", "Login");
-
             }
-
         }
 
         public ActionResult Create()
