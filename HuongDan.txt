@@ -1,0 +1,14 @@
+Tạo database SQLServer tên: [TracNghiemOnline]
+Excute file DB_TracNghiem.sql
+
+Login với Tài khoản: 
+Nhân viên:
+minhtam@gmail.com  nhanvien
+Quản lý:
+ngoctruc@gmail.com  admin
+Khách hàng:
+giahuy@gmail.com  hocsinh
+ngoctruc020100@gmail.com  ngoctruc
+
+có thể reset password theo tài khoản đăng nhập
+(lưu ý: tài khoản phải là email đúng)
