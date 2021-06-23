@@ -85,6 +85,12 @@ namespace DA_WEBNC.Controllers
             Session.Abandon();
             return RedirectToAction("Login", "Login");
         }
+
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
         public string GetIDHocSinh()
         {
             var list = _database.HocSinhs.ToArray();

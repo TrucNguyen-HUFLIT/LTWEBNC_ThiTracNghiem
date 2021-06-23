@@ -74,6 +74,7 @@ namespace DA_WEBNC.Controllers
                     _database.HocSinhs.Attach(model);
                     _database.Entry(model).State = System.Data.Entity.EntityState.Modified;
                     await _database.SaveChangesAsync();
+                    TempData["result"] = "Cập nhật thông tin thành công";
                     return RedirectToAction("Index");
                 }
                 return View(hocSinh);
@@ -128,6 +129,43 @@ namespace DA_WEBNC.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
+        }
+        public async Task<ActionResult> ChangePassword()
+        {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            string email = Session["email"].ToString();
+
+            ChangePassword changepass = new ChangePassword
+            {
+                ID = await _database.HocSinhs.Where(x => x.Email == email).Select(x => x.IDStudent).FirstOrDefaultAsync()
+            };
+            return View(changepass);
+
+        }
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(ChangePassword changepass)
+        {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (ModelState.IsValid)
+            {
+                var hocSinh = await _database.HocSinhs.FindAsync(changepass.ID);
+                if (hocSinh.Password == HashPassword(changepass.OldPassword)) 
+                    hocSinh.Password = HashPassword(changepass.NewPassword);
+
+                _database.HocSinhs.Attach(hocSinh);
+                _database.Entry(hocSinh).State = EntityState.Modified;
+                await _database.SaveChangesAsync();
+
+                TempData["result"] = "Đổi mật khẩu thành công !!!";
+                return View(new ChangePassword());
+            }
+            return View(changepass);
         }
 
         public string HashPassword(string password)

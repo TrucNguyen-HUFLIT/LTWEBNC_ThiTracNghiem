@@ -61,13 +61,13 @@ namespace DA_WEBNC.Controllers
                     _database.NhanViens.Attach(model);
                     _database.Entry(model).State = EntityState.Modified;
                     await _database.SaveChangesAsync();
+                    TempData["result"] = "Cập nhật thông tin thành công";
                     return RedirectToAction("Index");
                 }
                 return View(nhanVien);
             }
             return View(nhanVien);
         }
-
         public async Task<ActionResult> ChangePassword()
         {
             if (Session["email"] == null)
@@ -78,7 +78,7 @@ namespace DA_WEBNC.Controllers
 
             ChangePassword changepass = new ChangePassword
             {
-                IDNhanVien = await _database.NhanViens.Where(x => x.Email == email).Select(x => x.IDNhanVien).FirstOrDefaultAsync()
+                ID = await _database.NhanViens.Where(x => x.Email == email).Select(x => x.IDNhanVien).FirstOrDefaultAsync()
             };
             return View(changepass);
 
@@ -92,7 +92,7 @@ namespace DA_WEBNC.Controllers
             }
             if (ModelState.IsValid)
             {
-                var nhanVien = await _database.NhanViens.FindAsync(changepass.IDNhanVien);
+                var nhanVien = await _database.NhanViens.FindAsync(changepass.ID);
                 if (nhanVien.Password == HashPassword(changepass.OldPassword))
                     nhanVien.Password =  HashPassword(changepass.NewPassword);
 
@@ -100,7 +100,7 @@ namespace DA_WEBNC.Controllers
                 _database.Entry(nhanVien).State = EntityState.Modified;
                 await _database.SaveChangesAsync();
 
-                ViewBag.Done = "Done";
+                TempData["result"] = "Đổi mật khẩu thành công !!!";
                 return View(new ChangePassword());
             }
             return View(changepass);

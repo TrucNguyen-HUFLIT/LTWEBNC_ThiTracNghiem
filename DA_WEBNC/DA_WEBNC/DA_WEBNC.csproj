@@ -260,12 +260,14 @@
     <Content Include="Content\Images\logo_homePage.png" />
     <Content Include="Content\Images\NguyenGiaHuy.jpg" />
     <Content Include="Content\Images\NguyenMinhTam.jpg" />
+    <Content Include="Content\Images\NguyenNgocTruc.jpg" />
     <Content Include="Content\Images\nvg.jpg" />
     <Content Include="Content\js.js" />
     <Content Include="Content\login.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style1.css" />
     <Content Include="Content\style2.css" />
+    <Content Include="Content\styleCauHoi.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -336,6 +338,8 @@
     <Content Include="Views\ExamManagement\AddCH.cshtml" />
     <Content Include="Views\StudentsManagement\Index.cshtml" />
     <Content Include="Views\Profile\ChangePassword.cshtml" />
+    <Content Include="Views\ProfileUser\ChangePassword.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
