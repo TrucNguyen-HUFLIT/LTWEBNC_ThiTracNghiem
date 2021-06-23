@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <link href="~/Content/admin_item.css" rel="stylesheet" />
-
 @using (Html.BeginForm("Index", "ProfileUser", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     <div class="profile_img">
@@ -38,6 +37,14 @@
     </div>
     <div class="profile_content">
         <div class="text-center">
+            @if (TempData["result"] != null)
+            {
+                <div style="margin: 10px">
+                    <div id="alert-success" class="alert alert-success" role="alert">
+                        @TempData["result"]
+                    </div>
+                </div>
+            }
             <h1>Thông tin cá nhân</h1>
         </div>
         <br /> <br /> <br />

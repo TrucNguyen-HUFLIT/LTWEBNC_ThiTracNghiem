@@ -260,6 +260,7 @@
     <Content Include="Content\Images\logo_homePage.png" />
     <Content Include="Content\Images\NguyenGiaHuy.jpg" />
     <Content Include="Content\Images\NguyenMinhTam.jpg" />
+    <Content Include="Content\Images\NguyenNgocTruc.jpg" />
     <Content Include="Content\Images\nvg.jpg" />
     <Content Include="Content\js.js" />
     <Content Include="Content\login.css" />

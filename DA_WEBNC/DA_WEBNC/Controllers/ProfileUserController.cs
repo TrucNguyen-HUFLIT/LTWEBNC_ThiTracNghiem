@@ -74,6 +74,7 @@ namespace DA_WEBNC.Controllers
                     _database.HocSinhs.Attach(model);
                     _database.Entry(model).State = System.Data.Entity.EntityState.Modified;
                     await _database.SaveChangesAsync();
+                    TempData["result"] = "Cập nhật thông tin thành công";
                     return RedirectToAction("Index");
                 }
                 return View(hocSinh);

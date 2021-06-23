@@ -61,6 +61,7 @@ namespace DA_WEBNC.Controllers
                     _database.NhanViens.Attach(model);
                     _database.Entry(model).State = EntityState.Modified;
                     await _database.SaveChangesAsync();
+                    TempData["result"] = "Cập nhật thông tin thành công";
                     return RedirectToAction("Index");
                 }
                 return View(nhanVien);
