@@ -157,7 +157,11 @@ namespace DA_WEBNC.Controllers
                 var hocSinh = await _database.HocSinhs.FindAsync(changepass.ID);
                 if (hocSinh.Password == HashPassword(changepass.OldPassword)) 
                     hocSinh.Password = HashPassword(changepass.NewPassword);
-
+                else
+                {
+                    ViewBag.Error = "Sai mật khẩu!";
+                    return View("ChangePassword" , changepass);
+                }
                 _database.HocSinhs.Attach(hocSinh);
                 _database.Entry(hocSinh).State = EntityState.Modified;
                 await _database.SaveChangesAsync();

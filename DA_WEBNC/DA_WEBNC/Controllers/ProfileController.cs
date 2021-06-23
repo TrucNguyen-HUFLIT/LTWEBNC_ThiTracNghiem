@@ -95,7 +95,11 @@ namespace DA_WEBNC.Controllers
                 var nhanVien = await _database.NhanViens.FindAsync(changepass.ID);
                 if (nhanVien.Password == HashPassword(changepass.OldPassword))
                     nhanVien.Password =  HashPassword(changepass.NewPassword);
-
+                else
+                {
+                    ViewBag.Error = "Sai mật khẩu!";
+                    return View("ChangePassword", changepass);
+                }
                 _database.NhanViens.Attach(nhanVien);
                 _database.Entry(nhanVien).State = EntityState.Modified;
                 await _database.SaveChangesAsync();
